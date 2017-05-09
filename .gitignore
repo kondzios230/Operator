@@ -47,3 +47,6 @@
 /Operator/Operator.iOS/obj/iPhone/Debug
 /packages
 /Operator.Tests/obj/Debug
+/Operator.Test/bin/Debug
+/Operator.Test/obj/Debug
+/Operator.Tests/bin/Debug
