@@ -8,10 +8,10 @@ namespace Operator
 {
     public enum VideoStartStatusEnum
     {
-        Success,
-        FailNotEnoughSpace,
-        FailWrongMode,
-        FailNoCard
+        Success = 0,
+        FailNotEnoughSpace = -11,
+        FailWrongMode = -13,
+        FailNoCard = -22
     }
      
 }

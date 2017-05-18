@@ -1,7 +1,9 @@
-﻿namespace Operator
+﻿using System.Threading.Tasks;
+
+namespace Operator
 {
     public interface ICamera
     {
-        string StartRecording();
+        Task<string> StartRecording();
     }
 }

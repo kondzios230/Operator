@@ -8,6 +8,6 @@ namespace Operator
 {
     public interface IVideoService
     {
-        VideoStartStatusEnum StartRecording();
+        Task<VideoStartStatusEnum> StartRecording();
     }
 }

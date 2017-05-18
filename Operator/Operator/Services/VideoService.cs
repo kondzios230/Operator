@@ -13,10 +13,10 @@ namespace Operator
         {
             camera = Camera;
         }
-        public VideoStartStatusEnum StartRecording()
+        public async Task<VideoStartStatusEnum> StartRecording()
         {
             var cameraResponse = camera.StartRecording();
-            var responseCode = VideoParsers.ParseStartRecording(cameraResponse);
+            var responseCode = VideoParsers.ParseStartRecording(await cameraResponse);
             return responseCode;
         }
     }

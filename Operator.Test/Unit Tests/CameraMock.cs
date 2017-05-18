@@ -9,9 +9,11 @@ namespace Operator.Test
 {
     public class CameraMock : ICamera
     {
-        public string StartRecording()
+        public int status=0;
+
+        public Task<string> StartRecording()
         {
-            return "<?xml version=''1.0'' encoding=''UTF-8'' ?><Function><Cmd>2001</Cmd><Status>0</Status></Function>";
+            return Task.Run(()=>string.Format(@"<?xml version=""1.0""?><Function><Cmd>2001</Cmd><Status>{0}</Status></Function>",status.ToString()));
         }
     }
 }

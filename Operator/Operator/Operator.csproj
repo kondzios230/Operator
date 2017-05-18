@@ -38,6 +38,8 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Services\Camera.cs" />
+    <Compile Include="Utils\ConnectionStringsConstants.cs" />
     <Compile Include="Utils\EnumResponseCodesMapper.cs" />
     <Compile Include="Interfaces\ICamera.cs" />
     <Compile Include="Interfaces\IVideoService.cs" />
@@ -46,8 +48,8 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utils\RegexConstants.cs" />
-    <Compile Include="VideoParsers.cs" />
-    <Compile Include="VideoService.cs" />
+    <Compile Include="Parsers\VideoParsers.cs" />
+    <Compile Include="Services\VideoService.cs" />
     <Compile Include="Utils\VideoStartStatusEnum.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -61,6 +63,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="System.Net.Http">
+      <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Net.Http.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Forms.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Xamarin.Forms.2.3.3.193\lib\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.Core.dll</HintPath>
       <Private>True</Private>

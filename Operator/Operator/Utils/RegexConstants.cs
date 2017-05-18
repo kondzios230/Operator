@@ -8,6 +8,6 @@ namespace Operator
 {
     public static class RegexConstants
     {
-        public const string VideoStartRecordingResponse = @"<?xml version=''1.0'' encoding=''UTF-8'' \?><Function><Cmd>2001<\/Cmd><Status>(.*?)<\/Status><\/Function>";
+        public const string VideoStartRecordingResponse = "<?xml version=''1.0'' encoding=''UTF-8'' \\?>\n<Function>\n<Cmd>2001</Cmd>\n<Status>(.*?)</Status>\n</Function>";
     }
 }
