@@ -1,10 +1,13 @@
-﻿using System;
+﻿using Operator.Interfaces;
+using Operator.Parsers;
+using Operator.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Operator
+namespace Operator.Services
 {
     public class VideoService : IVideoService
     {

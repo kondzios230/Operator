@@ -1,4 +1,7 @@
 ﻿using NUnit.Framework;
+using Operator.Interfaces;
+using Operator.Services;
+using Operator.Utils;
 using System.Threading.Tasks;
 
 namespace Operator.Test

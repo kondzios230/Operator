@@ -4,8 +4,9 @@ using System.Text.RegularExpressions;
 using System.Linq;
 using System.Xml.Linq;
 using System;
+using Operator.Utils;
 
-namespace Operator
+namespace Operator.Parsers
 {
     public static class VideoParsers
     {

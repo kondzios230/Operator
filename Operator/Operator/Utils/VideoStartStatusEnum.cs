@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Operator
+namespace Operator.Utils
 {
     public enum VideoStartStatusEnum
     {
@@ -12,6 +12,5 @@ namespace Operator
         FailNotEnoughSpace = -11,
         FailWrongMode = -13,
         FailNoCard = -22
-    }
-     
+    }     
 }

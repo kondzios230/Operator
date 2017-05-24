@@ -38,7 +38,10 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Interfaces\IImageDownloadService.cs" />
+    <Compile Include="Parsers\ImageDownloadParsers.cs" />
     <Compile Include="Services\Camera.cs" />
+    <Compile Include="Services\ImageDownloadService.cs" />
     <Compile Include="Utils\ConnectionStringsConstants.cs" />
     <Compile Include="Utils\EnumResponseCodesMapper.cs" />
     <Compile Include="Interfaces\ICamera.cs" />
@@ -63,6 +66,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="HtmlAgilityPack, Version=1.5.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\HtmlAgilityPack.1.5.0-beta5\lib\portable-net45+netcore45+wpa81+wp8+MonoAndroid+MonoTouch\HtmlAgilityPack.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\System.Net.Http.dll</HintPath>
     </Reference>

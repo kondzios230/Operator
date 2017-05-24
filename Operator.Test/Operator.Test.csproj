@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Integration Tests\IntegrationTests.cs" />
     <Compile Include="Unit Tests\CameraMock.cs" />
+    <Compile Include="Unit Tests\ImageDownloadTests.cs" />
     <Compile Include="Unit Tests\VideoParsersTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
