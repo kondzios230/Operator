@@ -12,7 +12,7 @@ namespace Operator.Services
         {
             using (var c = new HttpClient() { Timeout = new System.TimeSpan(0, 0, 15) })
             {
-                return await c.GetStringAsync("http://192.168.1.254/DCIM/PHOTO");
+                return await c.GetStringAsync(ConnectionStringsConstants.GetAddress(ConnectionString.GetImages));
             }
         }
 
@@ -20,7 +20,7 @@ namespace Operator.Services
         {
             using (var c = new HttpClient() { Timeout = new System.TimeSpan(0,0,5) })
             {
-                return await c.GetStringAsync(ConnectionStringsConstants.StartRecording);
+                return await c.GetStringAsync(ConnectionStringsConstants.GetAddress(ConnectionString.StartRecording));
             }
         }
     }

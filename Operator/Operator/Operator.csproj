@@ -39,8 +39,10 @@
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
     <Compile Include="Interfaces\IImageDownloadService.cs" />
+    <Compile Include="Models\Photo.cs" />
     <Compile Include="Parsers\ImageDownloadParsers.cs" />
     <Compile Include="Services\Camera.cs" />
+    <Compile Include="Services\CameraMock.cs" />
     <Compile Include="Services\ImageDownloadService.cs" />
     <Compile Include="Utils\ConnectionStringsConstants.cs" />
     <Compile Include="Utils\EnumResponseCodesMapper.cs" />
@@ -54,6 +56,10 @@
     <Compile Include="Parsers\VideoParsers.cs" />
     <Compile Include="Services\VideoService.cs" />
     <Compile Include="Utils\VideoStartStatusEnum.cs" />
+    <Compile Include="ViewModels\PhotoListViewModel.cs" />
+    <Compile Include="Views\PhotoListView.xaml.cs">
+      <DependentUpon>PhotoListView.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="MainPage.xaml">
@@ -89,6 +95,13 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\PhotoListView.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\Portable\$(TargetFrameworkVersion)\Microsoft.Portable.CSharp.targets" />
   <Import Project="..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets" Condition="Exists('..\..\packages\Xamarin.Forms.2.3.3.193\build\portable-win+net45+wp80+win81+wpa81+MonoAndroid10+Xamarin.iOS10+xamarinmac20\Xamarin.Forms.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

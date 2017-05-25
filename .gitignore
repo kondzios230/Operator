@@ -50,3 +50,8 @@
 /Operator.Test/bin/Debug
 /Operator.Test/obj/Debug
 /Operator.Tests/bin/Debug
+/Operator/Operator.Android/obj/.cache/Operator.Android.flag
+/Operator/Operator.Android/obj/Debug/ZH8007195V.deployment
+/Operator/Operator.Android/obj/Debug/upload.flag
+/Operator/Operator.Android/obj/Debug/devices.cache
+/Operator/Operator.Android/obj/Debug/android_debug_keystore.flag

@@ -5,6 +5,7 @@ using Operator.Parsers;
 using Operator.Interfaces;
 using System.Threading.Tasks;
 using System.Linq;
+using Operator.Models;
 
 namespace Operator.Services
 {
@@ -16,11 +17,10 @@ namespace Operator.Services
             camera = Camera;
         }
 
-        public async Task GetImages()
+        public async Task<List<Photo>> GetImages()
         {
             var cameraResponse = await camera.GetImages();
-            var prs= ImageDownloadParsers.ParseImagesList(cameraResponse);
-            
+            return ImageDownloadParsers.ParseImagesList(cameraResponse);
         }
     }
 }
