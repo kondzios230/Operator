@@ -43,6 +43,7 @@
     <Compile Include="Parsers\ImageDownloadParsers.cs" />
     <Compile Include="Services\Camera.cs" />
     <Compile Include="Services\CameraMock.cs" />
+    <Compile Include="Services\CommonService.cs" />
     <Compile Include="Services\ImageDownloadService.cs" />
     <Compile Include="Utils\ConnectionStringsConstants.cs" />
     <Compile Include="Utils\EnumResponseCodesMapper.cs" />

@@ -9,13 +9,8 @@ using System.Threading.Tasks;
 
 namespace Operator.Services
 {
-    public class VideoService : IVideoService
-    {
-        private ICamera camera;
-        public VideoService(ICamera Camera)
-        {
-            camera = Camera;
-        }
+    public class VideoService : CommonService, IVideoService
+    {        
         public async Task<VideoStartStatusEnum> StartRecording()
         {
             var cameraResponse = camera.StartRecording();

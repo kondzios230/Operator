@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Operator.Views.PhotoListView">
     <StackLayout>
-        <ListView ItemsSource="{Binding Photos}" HeightRequest="300">
+        <ListView ItemsSource="{Binding Photos}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding ImagePath}" WidthRequest="50" BackgroundColor="Black"/>
+                            <Image Source="{Binding Image}" WidthRequest="50" BackgroundColor="Black"/>
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Date}"/>
                             <Label Text="{Binding Size}"/>
@@ -17,6 +17,13 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <Button Text="Next" Command="{Binding NextPageCommand}" HeightRequest="25"/>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Text="&lt;" Command="{Binding PreviousPageCommand}" HeightRequest="50"/>
+            <Button Text="&gt;" Grid.Column="1" Command="{Binding NextPageCommand}" HeightRequest="50"/>
+        </Grid>
     </StackLayout>
 </ContentPage>

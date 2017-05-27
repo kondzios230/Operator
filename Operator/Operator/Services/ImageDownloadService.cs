@@ -9,14 +9,8 @@ using Operator.Models;
 
 namespace Operator.Services
 {
-    public class ImageDownloadService :IImageDownloadService
+    public class ImageDownloadService : CommonService, IImageDownloadService
     {
-        private ICamera camera;
-        public ImageDownloadService(ICamera Camera)
-        {
-            camera = Camera;
-        }
-
         public async Task<List<Photo>> GetImages()
         {
             var cameraResponse = await camera.GetImages();
