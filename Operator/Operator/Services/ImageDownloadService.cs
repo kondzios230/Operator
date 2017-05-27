@@ -11,6 +11,15 @@ namespace Operator.Services
 {
     public class ImageDownloadService : CommonService, IImageDownloadService
     {
+        public ImageDownloadService()
+        {
+
+        }
+        public ImageDownloadService(ICamera Camera)
+        {
+            camera = Camera;
+        }
+
         public async Task<List<Photo>> GetImages()
         {
             var cameraResponse = await camera.GetImages();

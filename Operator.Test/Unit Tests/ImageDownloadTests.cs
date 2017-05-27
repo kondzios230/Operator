@@ -20,13 +20,12 @@ namespace Operator.Test
 
             var flag = imgs.All(i => CheckIfPhotoIsOK(i));
              
-            Assert.AreEqual(true, flag && imgs.Count==3);
+            Assert.AreEqual(true, flag && imgs.Count==15);
         }
 
         private bool CheckIfPhotoIsOK(Photo photo)
         {
-            return photo.Name.Contains("2017_0520")
-                && photo.Path.Contains("2017_0520")
+            return photo.Path.Contains("2017_0520")
                 && photo.Size.Contains("KB")
                 && photo.Date.Contains("2017/05/20");
         }
