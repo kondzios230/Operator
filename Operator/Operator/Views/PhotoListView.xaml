@@ -1,19 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:Operator.Controls;assembly=Operator"
              x:Class="Operator.Views.PhotoListView">
     <StackLayout>
-        <ListView ItemsSource="{Binding Photos}">
+        <ListView x:Name="list" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}" RowHeight="150">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <ViewCell>
+                    <controls:ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Image}" WidthRequest="50" BackgroundColor="Black"/>
+                            <Image Source="{Binding Image}" WidthRequest="150"/>
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Date}"/>
                             <Label Text="{Binding Size}"/>
                         </StackLayout>
-                    </ViewCell>
+                    </controls:ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>

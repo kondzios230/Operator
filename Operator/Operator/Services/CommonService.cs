@@ -9,6 +9,6 @@ namespace Operator.Services
 {
     public abstract class CommonService
     {
-        protected ICamera camera = new CameraMock();
+        protected ICamera camera = new Camera();
     }
 }

@@ -13,7 +13,7 @@ namespace Operator
         {
             InitializeComponent();
 
-            MainPage = new Operator.Views.PhotoListView();
+            MainPage = new NavigationPage(new Views.PhotoListView());
         }
 
         protected override void OnStart()

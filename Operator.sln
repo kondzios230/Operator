@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator.Android", "Operator\Operator.Android\Operator.Android.csproj", "{F60FC8CC-DBFF-46E7-824E-BCB4A9727A1A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator.Droid", "Operator\Operator.Android\Operator.Droid.csproj", "{F60FC8CC-DBFF-46E7-824E-BCB4A9727A1A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Operator", "Operator\Operator\Operator.csproj", "{94B07B23-8A25-44C3-9C6F-9A6B8A043D00}"
 EndProject

@@ -1,4 +1,5 @@
-﻿using Operator.ViewModels;
+﻿using Operator.Models;
+using Operator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +12,12 @@ using Xamarin.Forms.Xaml;
 namespace Operator.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class PhotoListView : ContentPage
+    public partial class PhotoDetailsView : ContentPage
     {
-        public PhotoListView()
+        public PhotoDetailsView(Photo Photo)
         {
             InitializeComponent();
-            BindingContext = new PhotoListViewModel(Navigation);
-            list.ItemSelected += (s,e) => list.SelectedItem = null;
+            BindingContext = new PhotoDetailsViewModel(Photo);
         }
     }
 }
