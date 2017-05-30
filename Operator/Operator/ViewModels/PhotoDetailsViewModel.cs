@@ -43,9 +43,9 @@ namespace Operator.ViewModels
             Photo = photo;
         }
         
-        private async void OnDownloadCommand()
+        private void OnDownloadCommand()
         {
-            saveFileService.SavePictureToDisk(Photo.Image, "Aaa");
+            saveFileService.SavePictureToDisk(Photo.ImageSource, Photo.Name);
         }
     }
 }

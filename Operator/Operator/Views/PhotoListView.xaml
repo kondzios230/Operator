@@ -4,12 +4,12 @@
              xmlns:controls="clr-namespace:Operator.Controls;assembly=Operator"
              x:Class="Operator.Views.PhotoListView">
     <StackLayout>
-        <ListView x:Name="list" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}" RowHeight="150">
+        <ListView x:Name="list" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}" RowHeight="50">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:ViewCell>
                         <StackLayout Orientation="Horizontal">
-                            <Image Source="{Binding Image}" WidthRequest="150"/>
+                            <Image Source="{Binding ImageSource}"  />
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Date}"/>
                             <Label Text="{Binding Size}"/>

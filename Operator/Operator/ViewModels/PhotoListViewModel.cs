@@ -1,6 +1,7 @@
 ﻿using Operator.Interfaces;
 using Operator.Models;
 using Operator.Services;
+using Operator.Utils;
 using Operator.Views;
 using System;
 using System.Collections.Generic;
@@ -21,8 +22,9 @@ namespace Operator.ViewModels
         private List<Photo> backingPhotos;
         private IImageDownloadService imageDownloadService;
         private int firstPhotoIndex;
-        private const int imagesPerPage = 4;
+        private const int imagesPerPage = 10;
         private INavigation navigation;
+        private MyTimer timer;
 
         public ICommand NextPageCommand { get; }
         public ICommand PreviousPageCommand { get; }
@@ -50,7 +52,7 @@ namespace Operator.ViewModels
             get { return selectedPhoto; }
             set
             {
-                if (selectedPhoto != value && value!=null)
+                if (selectedPhoto != value && value != null)
                 {
                     selectedPhoto = value;
                     if (PropertyChanged != null)
@@ -59,11 +61,12 @@ namespace Operator.ViewModels
                     }
                     OpenPhotoDetails();
                 }
-            }           
+            }
         }
 
         public PhotoListViewModel(INavigation Navigation)
         {
+            timer = new MyTimer(new TimeSpan(0,0,0,0,700), PutImageSource);
             navigation = Navigation;
             imageDownloadService = new ImageDownloadService();
             NextPageCommand = new Command(OnNextPageCommand);
@@ -82,8 +85,23 @@ namespace Operator.ViewModels
         {
             var visiblePhotos = Math.Min(imagesPerPage, backingPhotos.Count - firstPhotoIndex);
             Photos = backingPhotos.GetRange(firstPhotoIndex, visiblePhotos);
+            timer.Stop();
+            timer.Start();
         }
 
+        private void PutImageSource()
+        {
+            var firstNoSource = Photos.FirstOrDefault(p => p.ImageSource == null);
+            if (firstNoSource == null)
+            {
+                timer?.Stop();
+                return;
+            }
+
+            firstNoSource.LoadImageSource();
+            if (firstNoSource == Photos.Last())
+                timer?.Stop();
+        }
         private void OnNextPageCommand()
         {
             var newFirstIndex = firstPhotoIndex + Photos.Count;

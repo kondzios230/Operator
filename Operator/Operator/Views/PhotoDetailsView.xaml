@@ -4,7 +4,7 @@
              x:Class="Operator.Views.PhotoDetailsView">
     <ContentPage.Content>
         <StackLayout>
-            <Image Source="{Binding Photo.Image}"/>
+            <Image Source="{Binding Photo.ImageSource}"/>
             <Label Text="{Binding Photo.Name}"/>
             <Label Text="{Binding Photo.Date}"/>
             <Label Text="{Binding Photo.Size}"/>
