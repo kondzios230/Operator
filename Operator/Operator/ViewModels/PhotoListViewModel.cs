@@ -25,9 +25,13 @@ namespace Operator.ViewModels
         private const int imagesPerPage = 10;
         private INavigation navigation;
         private MyTimer timer;
+        private List<Photo> selectedPhotos = new List<Photo>();
+        private ISaveFile saveFileService;
 
         public ICommand NextPageCommand { get; }
         public ICommand PreviousPageCommand { get; }
+        public ICommand EditCommand { get; }
+        public ICommand DownloadCommand { get; }
 
         private List<Photo> photos;
         public List<Photo> Photos
@@ -55,23 +59,55 @@ namespace Operator.ViewModels
                 if (selectedPhoto != value && value != null)
                 {
                     selectedPhoto = value;
+                    if (IsInEditMode)
+                    {
+                        if (selectedPhoto.FlipSelection())
+                            selectedPhotos.Add(selectedPhoto);
+                        else
+                            selectedPhotos.Remove(selectedPhoto);
+                    }
+                    else
+                    {
+                        if (PropertyChanged != null)
+                        {
+                            PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SelectedPhoto"));
+                        }
+                        OpenPhotoDetails();
+                    }
+                }
+            }
+        }
+
+        private bool isInEditMode;
+        public bool IsInEditMode
+        {
+            get
+            {
+                return isInEditMode;
+            }
+            set
+            {
+                if (isInEditMode != value)
+                {
+                    isInEditMode = value;
                     if (PropertyChanged != null)
                     {
-                        PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SelectedPhoto"));
+                        PropertyChanged.Invoke(this, new PropertyChangedEventArgs("IsInEditMode"));
                     }
-                    OpenPhotoDetails();
                 }
             }
         }
 
         public PhotoListViewModel(INavigation Navigation)
         {
-            timer = new MyTimer(new TimeSpan(0,0,0,0,700), PutImageSource);
+            saveFileService = DependencyService.Get<ISaveFile>();
+            timer = new MyTimer(new TimeSpan(0, 0, 0, 0, 700), PutImageSource);
             navigation = Navigation;
             imageDownloadService = new ImageDownloadService();
             NextPageCommand = new Command(OnNextPageCommand);
             PreviousPageCommand = new Command(OnPreviousPageCommand);
-
+            EditCommand = new Command(OnEditCommand);
+            DownloadCommand = new Command(OnDownloadCommand);
             GetPhotos();
         }
 
@@ -102,6 +138,7 @@ namespace Operator.ViewModels
             if (firstNoSource == Photos.Last())
                 timer?.Stop();
         }
+
         private void OnNextPageCommand()
         {
             var newFirstIndex = firstPhotoIndex + Photos.Count;
@@ -119,6 +156,24 @@ namespace Operator.ViewModels
             SetVisiblePhotos();
         }
 
+        private void OnDownloadCommand()
+        {
+            foreach(var photo in selectedPhotos)
+            {
+                saveFileService.SavePictureToDisk(photo.ImageSource, photo.Name);
+            }
+            OnEditCommand();
+        }
+
+        private void OnEditCommand()
+        {
+            IsInEditMode = !IsInEditMode;
+            foreach (var photo in Photos)
+            {
+                photo.FlipSelection(false);
+            }
+            selectedPhotos.Clear();
+        }
         private async void OpenPhotoDetails()
         {
             await navigation.PushAsync(new PhotoDetailsView(selectedPhoto));

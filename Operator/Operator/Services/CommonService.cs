@@ -9,7 +9,7 @@ namespace Operator.Services
 {
     public abstract class CommonService
     {
-        public static bool Mock = false;
+        public static bool Mock = true;
         protected ICamera camera = Mock ? (ICamera) new CameraMock() : (ICamera) new Camera();
     }
 }

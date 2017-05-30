@@ -8,7 +8,7 @@
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:ViewCell>
-                        <StackLayout Orientation="Horizontal">
+                        <StackLayout Orientation="Horizontal" BackgroundColor="{Binding BackgroundColor}">
                             <Image Source="{Binding ImageSource}"  />
                             <Label Text="{Binding Name}"/>
                             <Label Text="{Binding Date}"/>
@@ -20,11 +20,16 @@
         </ListView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
-                <ColumnDefinition/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Text="&lt;" Command="{Binding PreviousPageCommand}" HeightRequest="50"/>
-            <Button Text="&gt;" Grid.Column="1" Command="{Binding NextPageCommand}" HeightRequest="50"/>
+            <Button Text="E" Grid.Column="1" Command="{Binding EditCommand}" HeightRequest="50"/>
+           <Button Text="&gt;" Grid.Column="2" Command="{Binding NextPageCommand}" HeightRequest="50"/>
+            <Button Text="D" Grid.Column="3" Command="{Binding DownloadCommand}" HeightRequest="50" IsVisible="{Binding IsInEditMode}"/>
+
         </Grid>
     </StackLayout>
 </ContentPage>
