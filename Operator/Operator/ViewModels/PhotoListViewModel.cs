@@ -170,7 +170,7 @@ namespace Operator.ViewModels
             IsInEditMode = !IsInEditMode;
             foreach (var photo in Photos)
             {
-                photo.FlipSelection(false);
+                photo.SetSelection(false);
             }
             selectedPhotos.Clear();
         }

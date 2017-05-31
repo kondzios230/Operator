@@ -41,6 +41,8 @@
     <Compile Include="Controls\ViewCell.cs" />
     <Compile Include="Interfaces\IImageDownloadService.cs" />
     <Compile Include="Interfaces\ISaveFile.cs" />
+    <Compile Include="Models\ListItem.cs" />
+    <Compile Include="Models\ObservableObject.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Parsers\ImageDownloadParsers.cs" />
     <Compile Include="Camera\Camera.cs" />
