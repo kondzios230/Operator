@@ -15,10 +15,8 @@ using Xamarin.Forms;
 
 namespace Operator.ViewModels
 {
-    public class PhotoListViewModel : INotifyPropertyChanged
+    public class PhotoListViewModel : ObservableObject
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
         private List<Photo> backingPhotos;
         private IImageDownloadService imageDownloadService;
         private int firstPhotoIndex;
@@ -28,26 +26,16 @@ namespace Operator.ViewModels
         private List<Photo> selectedPhotos = new List<Photo>();
         private ISaveFile saveFileService;
 
-        public ICommand NextPageCommand { get; }
-        public ICommand PreviousPageCommand { get; }
-        public ICommand EditCommand { get; }
-        public ICommand DownloadCommand { get; }
+        public ICommand NextPageCommand { get; private set; }
+        public ICommand PreviousPageCommand { get; private set; }
+        public ICommand EditCommand { get; private set; }
+        public ICommand DownloadCommand { get; private set; }
 
         private List<Photo> photos;
         public List<Photo> Photos
         {
             get { return photos; }
-            set
-            {
-                if (photos != value)
-                {
-                    photos = value;
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged.Invoke(this, new PropertyChangedEventArgs("Photos"));
-                    }
-                }
-            }
+            set { SetField(ref photos, value); }
         }
 
         private Photo selectedPhoto;
@@ -56,24 +44,10 @@ namespace Operator.ViewModels
             get { return selectedPhoto; }
             set
             {
-                if (selectedPhoto != value && value != null)
+                if (value != null)
                 {
-                    selectedPhoto = value;
-                    if (IsInEditMode)
-                    {
-                        if (selectedPhoto.FlipSelection())
-                            selectedPhotos.Add(selectedPhoto);
-                        else
-                            selectedPhotos.Remove(selectedPhoto);
-                    }
-                    else
-                    {
-                        if (PropertyChanged != null)
-                        {
-                            PropertyChanged.Invoke(this, new PropertyChangedEventArgs("SelectedPhoto"));
-                        }
-                        OpenPhotoDetails();
-                    }
+                    SetField(ref selectedPhoto, value);
+                    HandlePhotoSelection();
                 }
             }
         }
@@ -81,21 +55,8 @@ namespace Operator.ViewModels
         private bool isInEditMode;
         public bool IsInEditMode
         {
-            get
-            {
-                return isInEditMode;
-            }
-            set
-            {
-                if (isInEditMode != value)
-                {
-                    isInEditMode = value;
-                    if (PropertyChanged != null)
-                    {
-                        PropertyChanged.Invoke(this, new PropertyChangedEventArgs("IsInEditMode"));
-                    }
-                }
-            }
+            get { return isInEditMode; }
+            set { SetField(ref isInEditMode, value); }
         }
 
         public PhotoListViewModel(INavigation Navigation)
@@ -104,11 +65,16 @@ namespace Operator.ViewModels
             timer = new MyTimer(new TimeSpan(0, 0, 0, 0, 700), PutImageSource);
             navigation = Navigation;
             imageDownloadService = new ImageDownloadService();
+            SetCommands();
+            GetPhotos();
+        }
+
+        private void SetCommands()
+        {
             NextPageCommand = new Command(OnNextPageCommand);
             PreviousPageCommand = new Command(OnPreviousPageCommand);
             EditCommand = new Command(OnEditCommand);
             DownloadCommand = new Command(OnDownloadCommand);
-            GetPhotos();
         }
 
         private async void GetPhotos()
@@ -158,7 +124,7 @@ namespace Operator.ViewModels
 
         private void OnDownloadCommand()
         {
-            foreach(var photo in selectedPhotos)
+            foreach (var photo in selectedPhotos)
             {
                 saveFileService.SavePictureToDisk(photo.ImageSource, photo.Name);
             }
@@ -174,9 +140,25 @@ namespace Operator.ViewModels
             }
             selectedPhotos.Clear();
         }
+
         private async void OpenPhotoDetails()
         {
             await navigation.PushAsync(new PhotoDetailsView(selectedPhoto));
+        }
+
+        private void HandlePhotoSelection()
+        {
+            if (IsInEditMode)
+            {
+                if (selectedPhoto.FlipSelection())
+                    selectedPhotos.Add(selectedPhoto);
+                else
+                    selectedPhotos.Remove(selectedPhoto);
+            }
+            else
+            {
+                OpenPhotoDetails();
+            }
         }
     }
 }
