@@ -16,7 +16,9 @@ namespace Operator.Models
 
         public string Name { get; set; }
 
-        public string Date { get; set; }
+        public DateTime Date { get; set; }
+
+        public string Time { get; set; }
 
         public string Size { get; set; }
 
@@ -31,7 +33,9 @@ namespace Operator.Models
         {
             Path = path;
             Name = name;
-            Date = date;
+            var d = date.Split(' ')[0];
+            Date = DateTime.Parse(d);
+            Time = date.Split(' ')[1];
             Size = size;
             BackgroundColor = Color.Transparent;
         }

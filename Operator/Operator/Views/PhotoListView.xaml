@@ -1,39 +1,46 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
-		xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
-
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+		     xmlns:fftransformations="clr-namespace:FFImageLoading.Transformations;assembly=FFImageLoading.Transformations"
              xmlns:controls="clr-namespace:Operator.Controls;assembly=Operator"
+             Title="Photos List"
              x:Class="Operator.Views.PhotoListView">
     <StackLayout>
-        <ListView x:Name="list" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}" RowHeight="50">
+        <ListView x:Name="list" ItemsSource="{Binding Photos}" SelectedItem="{Binding SelectedPhoto}" RowHeight="50" SeparatorColor="{StaticResource LightGrey}"> 
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <controls:ViewCell>
-                        <StackLayout Orientation="Horizontal" BackgroundColor="{Binding BackgroundColor}">
-                            <ffimageloading:CachedImage HeightRequest="70"
+                        <Grid Padding="5" BackgroundColor="{Binding BackgroundColor}">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <ffimageloading:CachedImage WidthRequest="70" Margin="0" 
 			                    DownsampleToViewSize="true" Source="{Binding ImageSource}"/>
-                            <Label Text="{Binding Name}"/>
-                            <Label Text="{Binding Date}"/>
-                            <Label Text="{Binding Size}"/>
-                        </StackLayout>
+                            <Label Grid.Column="1" Text="{Binding Name}"/>
+                            <StackLayout Grid.Column="2" BackgroundColor="Transparent">
+                                <Label  Text="{Binding Time}"/>
+                                <Label  Text="{Binding Date, Converter={StaticResource cnvDateTimeToDate}}"/>
+                            </StackLayout>
+                           
+                        </Grid>
                     </controls:ViewCell>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
         <Grid>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <Button Text="&lt;" Command="{Binding PreviousPageCommand}" HeightRequest="50"/>
             <Button Text="E" Grid.Column="1" Command="{Binding EditCommand}" HeightRequest="50"/>
-           <Button Text="&gt;" Grid.Column="2" Command="{Binding NextPageCommand}" HeightRequest="50"/>
-            <Button Text="D" Grid.Column="3" Command="{Binding DownloadCommand}" HeightRequest="50" IsVisible="{Binding IsInEditMode}"/>
-
+            <Button Text="&gt;" Grid.Column="2" Command="{Binding NextPageCommand}" HeightRequest="50"/>
+           
         </Grid>
+        <Button Text="Download" Command="{Binding DownloadCommand}" HeightRequest="50" IsVisible="{Binding IsInEditMode}"/>
     </StackLayout>
 </ContentPage>

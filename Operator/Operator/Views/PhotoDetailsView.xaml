@@ -1,14 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             Title="Photo Details"
              x:Class="Operator.Views.PhotoDetailsView">
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout Padding="5">
             <Image Source="{Binding Photo.ImageSource}"/>
             <Label Text="{Binding Photo.Name}"/>
-            <Label Text="{Binding Photo.Date}"/>
+            <Label Text="{Binding Photo.Time}"/>
+            <Label Text="{Binding Photo.Date , Converter={StaticResource cnvDateTimeToDate}}"/>
             <Label Text="{Binding Photo.Size}"/>
-            <Button Text="D" Command="{Binding DownloadCommand}" HeightRequest="50"/>
+            <Button Text="Download photo" Command="{Binding DownloadCommand}" HeightRequest="50"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

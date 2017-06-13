@@ -46,8 +46,10 @@ namespace Operator.ViewModels
             {
                 if (value != null)
                 {
-                    SetField(ref selectedPhoto, value);
-                    HandlePhotoSelection();
+                    if (SetField(ref selectedPhoto, value))
+                    {
+                        HandlePhotoSelection();
+                    }
                 }
             }
         }

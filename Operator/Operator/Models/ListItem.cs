@@ -4,7 +4,7 @@ namespace Operator.Models
 {
     public abstract class ListItem : ObservableObject
     {
-        protected Color SelectedColor = Color.Blue;
+        protected Color SelectedColor = Color.FromHex("#f2a100");
         protected Color UnSelectedColor = Color.Transparent;
 
         private bool isSelected;
