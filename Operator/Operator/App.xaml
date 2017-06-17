@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:Operator.Converters;assembly=Operator"
+             x:Class="Operator.App">
+    <Application.Resources>
+        <ResourceDictionary>
+            <Color x:Key="LightGrey">#c4c4c4</Color>
+            <Color x:Key="OrangeAccent">#f2a100</Color>
+            <Style x:Key="photoNameStyle" TargetType="Label">
+                <Setter Property="HorizontalOptions"
+                        Value="Start" />
+                <Setter Property="VerticalOptions"
+                        Value="CenterAndExpand" />
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            <Style TargetType="StackLayout">
+                <Setter Property="BackgroundColor" 
+                        Value="#262626"/>
+            </Style>
+            <Style TargetType="Label">
+                <Setter Property="TextColor" 
+                        Value="{StaticResource LightGrey}"/>
+            </Style>
+            <Style TargetType="Button">
+                <Setter Property="BackgroundColor" 
+                        Value="#262626"/>
+                <Setter Property="TextColor" 
+                        Value="{StaticResource OrangeAccent}"/>
+            </Style>
+            
+
+            <converters:DateTimeToDateConverter x:Key="cnvDateTimeToDate"/>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
